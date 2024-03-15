@@ -15,7 +15,8 @@ Arduino-based project that detects changes in water level. It is connected to Go
 3. Ultrasonic sensor
 4. Google's firebase account
 
-<img src="images\Ultrasonic sensor.jpg" width="40%" height="auto">
+<img src="images\Ultrasonic sensor.jpg" width="20%" height="auto">
+
 | Ultrasonic sensor | ESP32 pins |
 | ------------------- | ------------ |
 | VCC pin (for power)  | 3V3 pin |
@@ -28,7 +29,7 @@ Full code at: [Github](https://github.com/Roziallegro/Basic-flood-system-dashboa
 
 ### Sensor
 1. 1.	Create a firebase real-time database. For in depth details, head over to https://youtu.be/aO92B-K4TnQ?t=160. However, this code requires authorised email and password. The final database is as follows:
-<img src="images\Database example.png" width="50%" height="auto">
+<img src="images\Database example.png" width="30%" height="auto">
 2. Connected ultrasonic sensor to the ESP32. Head to the [Arduino IDE](https://www.arduino.cc/en/software) and start coding.
 3.	The following libraries were downloaded for the ESP32 firebase from Mobizt: 
 <img src="images\Library manager.png" width="50%" height="auto">
