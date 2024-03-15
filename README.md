@@ -5,7 +5,7 @@
 Arduino-based project that detects changes in water level. It is connected to Google's Firebase Database. Visualisation was performed using dash and plotly Python libraries as backends.
 
 <img src="images\System overview.png" width="50%" height="auto">
-<img src="images\Dashboard UI proposed.png" width="50%" height="auto">
+<img src="images\Dashboard UI proposed.png" width="80%" height="auto">
 
 ## Schematics
 
@@ -15,7 +15,7 @@ Arduino-based project that detects changes in water level. It is connected to Go
 3. Ultrasonic sensor
 4. Google's firebase account
 
-<img ultrasonic sensor>
+<img src="images\Ultrasonic sensor.jpg" width="40%" height="auto">
 | Ultrasonic sensor | ESP32 pins |
 | ------------------- | ------------ |
 | VCC pin (for power)  | 3V3 pin |
@@ -23,29 +23,29 @@ Arduino-based project that detects changes in water level. It is connected to Go
 | Echo pin (listens for reflected signal) | PIN 18 |
 | Gnd | GND pin |
 
-## [Code](https://github.com/Roziallegro/Basic-flood-system-dashboard)
+## Code
+Full code at: [Github](https://github.com/Roziallegro/Basic-flood-system-dashboard)
+
 ### Sensor
-Full code at: 
-
-1. Create a firebase realtime database. For in depth details, head over to https://youtu.be/aO92B-K4TnQ?t=160. However, this code requires authorised email and password. Here is what the final database would look like:
-<img database>
+1. 1.	Create a firebase real-time database. For in depth details, head over to https://youtu.be/aO92B-K4TnQ?t=160. However, this code requires authorised email and password. The final database is as follows:
+<img src="images\Database example.png" width="50%" height="auto">
 2. Connected ultrasonic sensor to the ESP32. Head to the [Arduino IDE](https://www.arduino.cc/en/software) and start coding.
-2. Download the following libraries for ESP32 firebase from Mobizt.
-<img library manager>
+3.	The following libraries were downloaded for the ESP32 firebase from Mobizt: 
+<img src="images\Library manager.png" width="50%" height="auto">
 
-3. Import the libraries.
+4. Import the libraries.
 ```
 #include <WiFi.h>
 #include <Firebase_ESP_Client.h>
 #include "addons/TokenHelper.h" // Provide the token generation process info
 #include "addons/RTDBHelper.h" // Provide the RTDB payload printing info and other helper functions
 ```
-4. Declare input and output pins.
+5. Declare input and output pins.
 ```
 const int trigPin = 5;
 const int echoPin = 18;
 ```
-5. Constants declaration.
+6. Constants declaration.
 **To change WiFi and Database credentials.**
 ```
 #define SOUND_SPEED 0.034
@@ -57,7 +57,7 @@ const int echoPin = 18;
 #define USER_EMAIL "AUTHORISED_USER_EMAIL_HERE"
 #define USER_PASSWORD "AUTHORISED_USER_PASSWORD_HERE"
 ```
-6. Variable declaration.
+7. Variable declaration.
 ```
 long duration;
 float distance_cm;
@@ -70,8 +70,8 @@ unsigned long sendDataPrevMillis = 0;
 int initial_reading = 0; 
 int current_reading = 0;
 ```
-7. Function declaration to get reading from ultrasonic sensor.
-Do note that we have to emit an ultrasonic signal first, record the time taken for sound to get reflected back into the sensor. Distance of an object, from the sensor is then calculated as, **distance = time taken * (speed of sound/2)**.
+8. Function declaration to obtain readings from the ultrasonic sensor.
+Note that we have to emit an ultrasonic signal first and record the time taken for sound to be reflected back into the sensor. The distance of an object from the sensor is then calculated as **distance = time taken × (speed of sound/2)**.
 ```
 float get_reading(){
   // Clears the trigPin
@@ -91,7 +91,7 @@ float get_reading(){
   return (int)distance_cm * CM_TO_MM;
 }
 ```
-8. Void setup() declaraion.
+9. Void setup() declaraion.
 This code runs once to initialise the following variables and start with WiFi and Database connections.
 ```
 void setup() {
@@ -146,7 +146,7 @@ Inside the function, wwe also initialise the database to include that our sensor
     }
 }
 ```
-9. Void loop() declaraion.
+10. Void loop() declaraion.
 For every 5000 ms, collect reading from the sensor and update the database.
 ```
 void loop() {
