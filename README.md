@@ -140,8 +140,10 @@ void setup() {
   config.token_status_callback = tokenStatusCallback; //see addons/TokenHelper.h
   Firebase.begin(&config, &auth);
 ```
-Inside the function, wwe also initialise the database to include that our sensor is now online and store the very first reading of the sensor as we will minus it off with the current reading to find if water level increased.
+Inside the function, wwe also initialise the database to include that our sensor is now online and store the very first reading of the sensor as we will minus it off with the current reading to find if water level increased.  
+
 <img src="images\Flood level changes.png" width="50%" height="auto">
+
 ```
   // Change sensor status, only once; default "offline"
   if (Firebase.RTDB.setString(&fbdo, "admin/sensor_status", "online")){
@@ -167,7 +169,7 @@ Inside the function, wwe also initialise the database to include that our sensor
 ```
 
 ### 10. Void loop() declaraion.
-For every 5000 ms, collect reading from the sensor and update the database.
+For every 5000 ms, collect reading from the sensor and update the database.  
 ```
 void loop() {
   // update readings every 5000ms(for demonstration purposes)
