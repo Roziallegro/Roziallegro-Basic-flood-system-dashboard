@@ -6,7 +6,7 @@ Arduino-based project that detects changes in water level. It is connected to Go
 
 <img src="images\System overview.png" width="80%" height="auto">
 
-Dashboard:
+Dashboard:  
 <img src="images\Dashboard UI proposed.png" width="80%" height="auto">
 
 ## Schematics
