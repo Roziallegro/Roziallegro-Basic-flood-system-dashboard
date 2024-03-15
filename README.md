@@ -335,7 +335,7 @@ This app runs on on local host: http://127.0.0.1:8051/
 
 
 The following code is about how individual html elements are used to achieve the following layout:
-<img src="images\Layout.png" width="50%" height="auto">
+<img src="images\Layout.png" width="80%" height="auto">
 
 
 ```  
