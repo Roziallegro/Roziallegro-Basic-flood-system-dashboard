@@ -126,7 +126,7 @@ void loop()
         }
 
         // compute change in water depth
-        if (Firebase.RTDB.setInt(&fbdo, "change_in_level", current_reading - initial_reading))
+        if (Firebase.RTDB.setInt(&fbdo, "change_in_level", initial_reading - current_reading))
         {
             Serial.println("Data saved");
             Serial.println("PATH: " + fbdo.dataPath());
