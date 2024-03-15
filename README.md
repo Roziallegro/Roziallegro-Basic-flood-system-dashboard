@@ -142,7 +142,7 @@ void setup() {
 ```
 Inside the function, wwe also initialise the database to include that our sensor is now online and store the very first reading of the sensor as we will minus it off with the current reading to find if water level increased.  
 
-<img src="images\Flood level changes.png" width="50%" height="auto">
+<img src="images\Flood level changes.png" width="80%" height="auto">
 
 ```
   // Change sensor status, only once; default "offline"
@@ -201,10 +201,11 @@ void loop() {
 }}
 ```
 
-### Dashboard
-1. Create and navigate to the folder of your choice and pip install the libraries found in requirement.txt.
+## Dashboard
+### 1. Create and navigate to the folder of your choice and pip install the libraries found in requirement.txt.
 `pip install -r requirements.txt`
-2. Inside python IDE, import the following libraries that were pip installed from requirements.txt.
+
+### 2. Inside python IDE, import the following libraries that were pip installed from requirements.txt.
 ```
 import plotly.graph_objects as go
 from dash import Dash, dcc, html, Input, Output
@@ -213,12 +214,17 @@ from datetime import datetime
 import firebase_admin
 from firebase_admin import db, credentials
 ```
-3. Authenticate to firebase
+
+### 3. Authenticate to firebase  
 **To update credentials.json and database url**
 Navigate to "Project Overview" -> "Project settings" -> "Service accounts" ->"Generate new private key"
-<img src="images\Generate private key.png" >
+
+<img src="images\Generate private key.png" width="80%" height="auto">
+
 Navigate to "Realtime Database" -> Copy database url
-<img src="images\Firebase URL.png" width="50%" height="auto">
+
+<img src="images\Firebase URL.png" width="80%" height="auto">
+
 ```
 try:
     cred = credentials.Certificate("credentials.json")
@@ -228,8 +234,13 @@ except:
     # if there is error
     main_status = "offline"
   ```
-  4. Initialise some helper functions that will help us (i) get today's date (ii) query from database and (iii) automatically updates the status of sensor (device), database and flood risk.
-  ```
+
+### 4. Initialise some helper functions that will help us:
+- get today's date
+- query from database
+- automatically updates the status of sensor (device), database and flood risk
+  
+```
   def get_day():
     time = datetime.now()
     return(time.strftime("%A"))
@@ -272,18 +283,22 @@ def warning_level():
         return html.P("Medium flood risk", style={"font-family": "Calibri", "color": "#F9D678", "font-size": 18, "margin": 0})
     else:
         return html.P("High flood risk", style={"font-family": "Calibri", "color": "#FFB0A9", "font-size": 18, "margin": 0})
-  ```
-  5. Initialise the dash application. 
-  create_layout() is where our html elements will be stored, it will be defined later.
+```
+
+### 5. Initialise the dash application.
+create_layout() is where our html elements will be stored, it will be defined later.
+
 ```
 def main() -> None:
     app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
     app.title = "Flood System"
     app.layout = create_layout(app)
 ```
+
 @app.callback() allows us to communicate with the backend via the Input() and Output() methods. Input() allows us to bring submit data, in this case it is the interval time to retrieve information in the database. Output() allows us to retrieve data from the database (in this case) and update the graph according in the webpage. 
 
 Since we need to constantly update the graph every 1000ms, we require the `interval-component`.
+
 ```
     @app.callback([Output(component_id="water_level", component_property="figure"),
                    Output(component_id="water_status", component_property="children")], 
@@ -310,13 +325,19 @@ Since we need to constantly update the graph every 1000ms, we require the `inter
         fig.update_layout(font = {'color': "#13313D", 'family': "Calibri"})
 
         return fig, warning_level()
-```  
+```
+
 This app runs on on local host: http://127.0.0.1:8051/
-  ```     
+
+```     
     app.run_server(debug=True, port=8051)
-```  
+```
+
+
 The following code is about how individual html elements are used to achieve the following layout:
 <img src="images\Layout.png" width="50%" height="auto">
+
+
 ```  
 def create_layout(app: Dash) -> html.Div:
     return html.Div(
@@ -359,7 +380,10 @@ def right_content(app: Dash) -> html.Div:
         ],
     )
 ```
-6. Run the whole application.
+
+
+### 6. Run the whole application.
+
 ```
 if __name__ == '__main__':
     main()
