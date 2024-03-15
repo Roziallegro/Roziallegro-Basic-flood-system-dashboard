@@ -29,7 +29,7 @@ Full code at: [Github](https://github.com/Roziallegro/Basic-flood-system-dashboa
 
 ### Sensor
 1. 1.	Create a firebase real-time database. For in depth details, head over to https://youtu.be/aO92B-K4TnQ?t=160. However, this code requires authorised email and password. The final database is as follows:
-<img src="images\Database example.png" width="30%" height="auto">
+<img src="images\Database example.png" width="25%" height="auto">
 2. Connected ultrasonic sensor to the ESP32. Head to the [Arduino IDE](https://www.arduino.cc/en/software) and start coding.
 3.	The following libraries were downloaded for the ESP32 firebase from Mobizt: 
 <img src="images\Library manager.png" width="50%" height="auto">
@@ -123,7 +123,7 @@ void setup() {
   Firebase.begin(&config, &auth);
 ```
 Inside the function, wwe also initialise the database to include that our sensor is now online and store the very first reading of the sensor as we will minus it off with the current reading to find if water level increased.
-<img flood level changes>
+<img src="images\Flood level changes.png" width="50%" height="auto">
 ```
   // Change sensor status, only once; default "offline"
   if (Firebase.RTDB.setString(&fbdo, "admin/sensor_status", "online")){
@@ -181,8 +181,6 @@ void loop() {
 ```
 
 ### Dashboard
-Full code at: 
-
 1. Create and navigate to the folder of your choice and pip install the libraries found in requirement.txt.
 `pip install -r requirements.txt`
 2. Inside python IDE, import the following libraries that were pip installed from requirements.txt.
@@ -197,9 +195,9 @@ from firebase_admin import db, credentials
 3. Authenticate to firebase
 **To update credentials.json and database url**
 Navigate to "Project Overview" -> "Project settings" -> "Service accounts" ->"Generate new private key"
-<img private key>
+<img src="images\Generate private key.png" >
 Navigate to "Realtime Database" -> Copy database url
-<img database url>
+<img src="images\Firebase URL.png" width="50%" height="auto">
 ```
 try:
     cred = credentials.Certificate("credentials.json")
@@ -297,7 +295,7 @@ This app runs on on local host: http://127.0.0.1:8051/
     app.run_server(debug=True, port=8051)
 ```  
 The following code is about how individual html elements are used to achieve the following layout:
-<img layout>
+<img src="images\Layout.png" width="50%" height="auto">
 ```  
 def create_layout(app: Dash) -> html.Div:
     return html.Div(
