@@ -2,7 +2,7 @@
 
 
 ## Introduction
-Arduino-based project that detects changes in water level. It is connected to Google's Firebase Database. Visualisation was performed using dash and plotly Python libraries as backends.
+Arduino-based project that detects changes in water level. It is connected to Google's Firebase Database. Visualisation was performed using dash and plotly Python libraries as backend. Click here for a short [demonstration](https://drive.google.com/file/d/1cDzkqXLLSqERqRLuSs8c2gZY4FTmQPTQ/view?usp=sharing)
 
 <img src="images\System overview.png" width="80%" height="auto">
 
