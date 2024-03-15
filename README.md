@@ -27,7 +27,6 @@ Dashboard:
 | Echo pin (listens for reflected signal) | PIN 18 |
 | Gnd | GND pin |
 
-br()
 
 ## Code
 Full code at: [Github](https://github.com/Roziallegro/Basic-flood-system-dashboard)
